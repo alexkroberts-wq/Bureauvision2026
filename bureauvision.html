@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUREAUVISION — One Small Idea (2:00)</title>
+<style>
+/* ============================================================
+   BUREAUVISION — a 2:00 browser-native animated short
+   Gilliam cut-out collage × Eurovision glitz.
+   Palette arc: institutional grey → full saturation.
+   ============================================================ */
+:root{
+  --paper:#f2ead8; --card:#e8dfc8; --ink:#2b2620;
+  --grey1:#8a8578; --grey2:#b7b1a1; --grey3:#d8d2c2; --grey4:#6e6a5e;
+  --fluoro:#d9e3c8;
+  --pink:#ff2e88; --blue:#00c2ff; --gold:#ffd23f; --purple:#7b2ff2;
+  --red:#e03a2f;
+  --disp:"Arial Black","Avenir Next Heavy",system-ui,sans-serif;
+  --type:"Courier New",Courier,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:#141210;overflow:hidden}
+body{display:flex;align-items:center;justify-content:center;font-family:var(--disp)}
+
+/* ---------- the stage: fixed 16:9, everything sized in cqw ---------- */
+#stage{
+  position:relative;width:min(100vw,177.78vh);aspect-ratio:16/9;
+  background:var(--grey3);overflow:hidden;container-type:size;
+  box-shadow:0 0 0 1px #000,0 2.5cqw 6cqw rgba(0,0,0,.6);
+}
+
+/* ---------- paper-cutout utilities ---------- */
+.cut{box-shadow:0 .35cqw 0 rgba(0,0,0,.28), inset 0 0 0 .18cqw rgba(43,38,32,.14)}
+.wob{animation:wob 1s steps(2) infinite}
+@keyframes wob{0%{transform:rotate(-1deg)}50%{transform:rotate(1.1deg)}100%{transform:rotate(-1deg)}}
+.tape-label{
+  position:absolute;font-family:var(--type);font-weight:700;color:var(--ink);
+  background:var(--paper);padding:.6cqw 1.2cqw;font-size:1.6cqw;letter-spacing:.08em;
+  box-shadow:0 .3cqw 0 rgba(0,0,0,.3);transform:rotate(-1.4deg);white-space:nowrap;
+}
+
+/* the little paper person (grey + colour variants) */
+.fig{position:absolute;width:6cqw;height:11cqw}
+.fig .head{position:absolute;top:0;left:16%;width:68%;aspect-ratio:1;background:var(--skin,#cfc9ba);
+  border-radius:52% 48% 55% 45%/50% 54% 46% 50%;box-shadow:0 .25cqw 0 rgba(0,0,0,.25)}
+.fig .eye{position:absolute;top:34%;width:9%;aspect-ratio:1;background:var(--ink);border-radius:50%}
+.fig .eL{left:38%}.fig .eR{left:60%}
+.fig .mouth{position:absolute;top:52%;left:46%;width:16%;height:3%;background:var(--ink);border-radius:2cqw}
+.fig.grin .mouth{height:9%;border-radius:0 0 2cqw 2cqw;top:50%}
+.fig .body{position:absolute;bottom:0;left:0;width:100%;height:52%;background:var(--cardi,var(--grey2));
+  border-radius:2.2cqw 2.2cqw 1cqw 1cqw;box-shadow:0 .3cqw 0 rgba(0,0,0,.28)}
+.fig .lan{position:absolute;bottom:14%;left:44%;width:12%;height:34%;background:var(--red)}
+.fig .badge{position:absolute;bottom:8%;left:36%;width:28%;height:14%;background:var(--paper);
+  box-shadow:0 .15cqw 0 rgba(0,0,0,.3)}
+
+/* ---------- scenes ---------- */
+.sc{position:absolute;inset:0;display:none}
+.sc.active{display:block}
+
+/* ===== BEAT 1 — THE GREY ===== */
+#s0{background:linear-gradient(180deg,#cdc7b8 0%,#c2bcac 55%,#aaa494 100%)}
+#s0 .fluoro{position:absolute;top:4%;left:12%;width:76%;height:2.4%;background:var(--fluoro);
+  box-shadow:0 0 3cqw 1cqw rgba(217,227,200,.55);animation:flick 3.1s steps(2) infinite}
+@keyframes flick{0%,100%{opacity:1}44%{opacity:1}46%{opacity:.55}48%{opacity:1}72%{opacity:1}73%{opacity:.7}74%{opacity:1}}
+#s0 .row{position:absolute;left:0;width:100%;display:flex;justify-content:space-evenly}
+#s0 .r1{bottom:42%}#s0 .r2{bottom:22%}#s0 .r3{bottom:2%}
+.desk{position:relative;width:15cqw;height:9cqw}
+.desk .top{position:absolute;bottom:44%;width:100%;height:10%;background:var(--grey4)}
+.desk .leg{position:absolute;bottom:0;width:6%;height:46%;background:var(--grey4)}
+.desk .lgL{left:6%}.desk .lgR{right:6%}
+.desk .mon{position:absolute;bottom:54%;left:30%;width:40%;height:42%;background:var(--grey1);
+  border:.35cqw solid var(--grey4)}
+#s0 .fig{bottom:55%;transform:scale(.9)}
+#s0 .wkr{left:30%;bottom:56%;transform:scale(.62);transform-origin:bottom}
+#s0 .copier{position:absolute;right:3%;bottom:24%;width:9cqw;height:12cqw;background:var(--grey2)}
+#s0 .copier .lid{position:absolute;top:0;width:100%;height:18%;background:var(--grey1)}
+#s0 .copier .led{position:absolute;top:42%;left:12%;width:1cqw;height:1cqw;border-radius:50%;
+  background:#9fbf7a;animation:blink 1.4s steps(1) infinite}
+@keyframes blink{0%,49%{opacity:1}50%,100%{opacity:.15}}
+#s0 .bigsheet{position:absolute;left:38%;bottom:14%;width:26cqw;height:34cqw;background:var(--paper);
+  transform:rotate(-2deg);
+  background-image:linear-gradient(var(--grey2) .18cqw,transparent .18cqw),
+                   linear-gradient(90deg,var(--grey2) .18cqw,transparent .18cqw);
+  background-size:100% 2.6cqw,3.6cqw 100%}
+#s0 .hero{left:31%;bottom:12%;z-index:2}
+#s0 .cap{left:3%;top:9%}
+
+/* ===== BEAT 2 — THE SPARK ===== */
+#s1{background:linear-gradient(180deg,#cdc7b8 0%,#c2bcac 55%,#aaa494 100%)}
+#s1 .deskbig{position:absolute;bottom:0;left:8%;width:84%;height:26%;background:var(--grey4)}
+#s1 .sheet{position:absolute;bottom:24%;left:12%;width:34cqw;height:24cqw;background:var(--paper);
+  transform:rotate(-1.6deg);
+  background-image:linear-gradient(var(--grey2) .18cqw,transparent .18cqw),
+                   linear-gradient(90deg,var(--grey2) .18cqw,transparent .18cqw);
+  background-size:100% 2.4cqw,3.4cqw 100%}
+#s1 .hero{left:52%;bottom:20%;transform:scale(1.6);transform-origin:bottom}
+#s1 .hero .head{animation:tilt 1.2s steps(3) .9s forwards}
+@keyframes tilt{to{transform:rotate(-11deg)}}
+#s1 .postit{position:absolute;width:6cqw;height:6cqw;background:var(--pink);left:30%;
+  box-shadow:0 .4cqw 0 rgba(0,0,0,.3);animation:fall 1.6s steps(7) forwards}
+@keyframes fall{from{top:-12%;transform:rotate(120deg)}to{top:58%;transform:rotate(-7deg)}}
+#s1 .bubble{position:absolute;left:60%;top:12%;width:26cqw;padding:3cqw 2.5cqw;background:#fff;
+  border-radius:46% 54% 52% 48%/55% 48% 52% 45%;text-align:center;
+  font-size:4cqw;color:var(--ink);opacity:0;animation:pop .5s steps(4) 2.1s forwards}
+#s1 .bubble small{display:block;font-family:var(--type);font-size:1.7cqw;margin-top:.6cqw;color:var(--grey4)}
+#s1 .b1,#s1 .b2{position:absolute;background:#fff;border-radius:50%;opacity:0}
+#s1 .b1{width:3cqw;height:3cqw;left:58%;top:39%;animation:pop .3s steps(3) 1.7s forwards}
+#s1 .b2{width:1.6cqw;height:1.6cqw;left:56%;top:46%;animation:pop .3s steps(3) 1.5s forwards}
+@keyframes pop{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+
+/* ===== BEAT 3 — THE IDEA ASSEMBLES ===== */
+#s2{background:linear-gradient(180deg,#cdc7b8,#aaa494)}
+#s2 .wash{position:absolute;inset:0;background:radial-gradient(circle at 34% 66%,
+  var(--pink) 0%,#ff6ab0 26%,var(--purple) 52%,#2a1440 78%);
+  clip-path:circle(0% at 34% 66%);animation:bleed 3.2s steps(14) .3s forwards}
+@keyframes bleed{to{clip-path:circle(140% at 34% 66%)}}
+#s2 .marquee{position:absolute;top:34%;left:50%;transform:translateX(-50%);display:flex;gap:.7cqw}
+#s2 .tile{position:relative;width:6.4cqw;height:8.6cqw;background:var(--paper);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:5cqw;
+  box-shadow:0 .5cqw 0 rgba(0,0,0,.35);opacity:0;
+  animation:flyin .7s steps(5) calc(var(--i)*.85s + .5s) forwards}
+@keyframes flyin{
+  0%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(33deg) scale(.5)}
+  70%{opacity:1;transform:translate(0,0) rotate(0) scale(1)}
+  85%{transform:scale(1.14)}
+  100%{opacity:1;transform:scale(1)}}
+#s2 .tile i{position:absolute;width:.9cqw;height:.9cqw;border-radius:50%;background:#7a6a3a}
+#s2 .tile i:nth-child(1){top:4%;left:6%}#s2 .tile i:nth-child(2){top:4%;right:6%}
+#s2 .tile i:nth-child(3){bottom:4%;left:6%}#s2 .tile i:nth-child(4){bottom:4%;right:6%}
+#s2 .tile.on i{background:var(--gold);box-shadow:0 0 1.2cqw var(--gold);
+  animation:chase .48s steps(2) calc(var(--i)*.12s) infinite}
+@keyframes chase{50%{opacity:.35}}
+#s2 .sub{position:absolute;top:62%;left:50%;transform:translateX(-50%) rotate(-1deg);
+  font-family:var(--type);font-size:2.2cqw;color:#fff;opacity:0;
+  animation:pop .5s steps(4) 12.4s forwards;letter-spacing:.14em}
+
+/* ===== BEAT 4 — BUILDING THE STAGE ===== */
+#s3{background:radial-gradient(circle at 50% 20%,#3d1a63,#1c0b33 70%)}
+#s3 .plat{position:absolute;bottom:0;height:22%;background:var(--pink);
+  box-shadow:0 -.6cqw 0 #c1005e;animation:riseup 1.2s steps(6) forwards}
+#s3 .p1{left:8%;width:28%;animation-delay:.2s}
+#s3 .p2{left:36%;width:28%;height:30%;background:var(--blue);box-shadow:0 -.6cqw 0 #0086b3;animation-delay:.6s}
+#s3 .p3{left:64%;width:28%;animation-delay:1s}
+@keyframes riseup{from{transform:translateY(110%)}to{transform:translateY(0)}}
+#s3 .stack{position:absolute;bottom:0;width:12cqw;display:flex;flex-direction:column-reverse;gap:.5cqw}
+#s3 .stL{left:1.5%}#s3 .stR{right:1.5%}
+#s3 .cab{position:relative;height:10cqw;background:var(--grey4);animation:slidein .8s steps(5) both}
+#s3 .stL .cab{transform-origin:left}.stR .cab{transform-origin:right}
+#s3 .cab:nth-child(1){animation-delay:1.4s}#s3 .cab:nth-child(2){animation-delay:1.8s}
+#s3 .cab:nth-child(3){animation-delay:2.2s}
+@keyframes slidein{from{transform:translateX(var(--sx)) rotate(9deg);opacity:0}to{transform:none;opacity:1}}
+#s3 .stL .cab{--sx:-24cqw}#s3 .stR .cab{--sx:24cqw}
+#s3 .cab .drawer{position:absolute;top:8%;left:8%;width:84%;height:14%;background:var(--grey1)}
+#s3 .cab .woof{position:absolute;bottom:10%;left:22%;width:56%;aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,#111 30%,var(--grey1) 32%,#111 60%);
+  animation:thump .476s steps(2) infinite}
+@keyframes thump{50%{transform:scale(1.12)}}
+#s3 .ball{position:absolute;top:6%;left:46%;width:8cqw;height:11cqw;border-radius:1.4cqw;
+  background:var(--paper);animation:drop 2s steps(8) 2.6s both, swing 2.4s ease-in-out 4.6s infinite alternate;
+  background-image:radial-gradient(circle,#b9ad8d 34%,transparent 36%);background-size:2cqw 2cqw;
+  box-shadow:0 0 3cqw rgba(255,255,255,.5)}
+#s3 .ball::before{content:"";position:absolute;top:-16cqw;left:49%;width:2%;height:16cqw;background:#ccc}
+@keyframes drop{from{transform:translateY(-30cqw)}to{transform:translateY(0)}}
+@keyframes swing{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+#s3 .glint{position:absolute;width:1.4cqw;height:1.4cqw;border-radius:50%;background:#fff;
+  opacity:0;animation:glint 1.9s steps(3) 4.8s infinite}
+@keyframes glint{0%{opacity:0}12%{opacity:.9}30%{opacity:0}100%{opacity:0}}
+#s3 .cap{left:50%;top:8%;transform:translateX(-50%) rotate(1deg)}
+#s3 .lanwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.strip{position:absolute;top:-8%;width:1.1cqw;height:5cqw;
+  animation:cfall linear both}
+@keyframes cfall{from{transform:translateY(0) rotate(0)}to{transform:translateY(120cqh) rotate(var(--rr))}}
+
+/* ===== BEAT 5 — THE CONTESTANTS ===== */
+#s4{background:radial-gradient(circle at 50% 15%,#4b2178,#180a2d 72%)}
+#s4 .runway{position:absolute;bottom:0;left:0;width:100%;height:20%;background:var(--blue);
+  box-shadow:0 -.6cqw 0 #0086b3}
+#s4 .act{position:absolute;bottom:16%;left:50%;width:34cqw;height:30cqw;transform:translateX(-50%);
+  opacity:0}
+#s4 .a1{animation:actin 4.6s steps(20) .2s both}
+#s4 .a2{animation:actin 4.6s steps(20) 4.9s both}
+#s4 .a3{animation:actin 4.6s steps(20) 9.6s both}
+@keyframes actin{0%{opacity:0;transform:translateX(60cqw)}10%{opacity:1;transform:translateX(-50%)}
+  88%{opacity:1;transform:translateX(-50%)}100%{opacity:0;transform:translateX(-160cqw)}}
+#s4 .actname{position:absolute;bottom:-1cqw;left:50%;transform:translateX(-50%) rotate(-1.2deg);
+  font-family:var(--type);font-size:1.7cqw;background:var(--paper);padding:.5cqw 1cqw;white-space:nowrap;
+  box-shadow:0 .3cqw 0 rgba(0,0,0,.3)}
+/* act 1: spreadsheet chorus line */
+.cells{position:absolute;top:22%;left:6%;display:flex;gap:1cqw}
+.cell{position:relative;width:5cqw;height:6cqw;background:var(--paper);
+  display:flex;align-items:center;justify-content:center;font-size:2.6cqw;color:var(--ink)}
+.cell::before,.cell::after{content:"";position:absolute;top:100%;width:14%;height:60%;background:var(--paper);
+  transform-origin:top}
+.cell::before{left:26%;animation:kickL .55s steps(2) infinite}
+.cell::after{right:26%;animation:kickR .55s steps(2) infinite}
+.cell:nth-child(even)::before{animation-delay:.27s}.cell:nth-child(even)::after{animation-delay:.27s}
+@keyframes kickL{50%{transform:rotate(52deg)}}
+@keyframes kickR{50%{transform:rotate(-52deg)}}
+/* act 2: hi-vis opera */
+.vest{position:absolute;top:16%;left:34%;width:14cqw;height:17cqw;background:#ff7a00;
+  clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}
+.vest .bandh{position:absolute;top:44%;left:0;width:100%;height:14%;background:var(--gold)}
+.vest .bandv{position:absolute;top:0;left:42%;width:16%;height:100%;background:var(--gold)}
+.hat{position:absolute;top:4%;left:38.5%;width:9cqw;height:6cqw;background:var(--ink)}
+.hat::before{content:"";position:absolute;bottom:0;left:-18%;width:136%;height:22%;background:var(--ink)}
+.omouth{position:absolute;top:26%;left:44.5%;width:3.4cqw;height:4cqw;background:var(--ink);border-radius:50%;
+  animation:belt .62s steps(2) infinite}
+@keyframes belt{50%{transform:scaleY(.45)}}
+.note{position:absolute;font-size:3cqw;color:var(--gold);animation:floatup 1.6s steps(6) infinite;opacity:0}
+.n1{left:58%;top:20%}.n2{left:64%;top:26%;animation-delay:.5s}.n3{left:28%;top:22%;animation-delay:1s}
+@keyframes floatup{0%{opacity:0;transform:translateY(0)}20%{opacity:1}100%{opacity:0;transform:translateY(-9cqw)}}
+/* act 3: the stapler solo */
+.stool{position:absolute;bottom:8%;left:42%;width:10cqw;height:8cqw}
+.stool::before{content:"";position:absolute;top:0;width:100%;height:14%;background:#7a4a1e}
+.stool::after{content:"";position:absolute;top:14%;left:12%;width:10%;height:86%;background:#7a4a1e;
+  box-shadow:6.6cqw 0 0 #7a4a1e}
+.stapler{position:absolute;bottom:15%;left:37%;width:18cqw;height:6cqw}
+.stapler .base{position:absolute;bottom:0;width:100%;height:38%;background:#111;border-radius:.6cqw}
+.stapler .arm2{position:absolute;bottom:34%;width:96%;left:2%;height:42%;background:#c1121f;
+  border-radius:1cqw 1cqw .4cqw .4cqw;transform-origin:92% 100%;animation:staple 1.5s steps(3) infinite}
+@keyframes staple{0%,60%{transform:rotate(-16deg)}75%,85%{transform:rotate(0)}100%{transform:rotate(-16deg)}}
+.spot{position:absolute;top:-6%;left:30%;width:40cqw;height:40cqw;
+  background:conic-gradient(from 168deg at 50% 0,transparent 0deg,rgba(255,240,180,.32) 12deg,transparent 24deg)}
+/* scoreboard */
+#s4 .board{position:absolute;top:7%;right:3%;width:26cqw;padding:1.4cqw;background:#0d0620;
+  border:.4cqw solid var(--gold);transform:rotate(1deg)}
+#s4 .board h3{font-size:2cqw;color:var(--gold);letter-spacing:.12em;margin-bottom:1cqw;font-family:var(--type)}
+#s4 .brow{display:flex;align-items:center;gap:1cqw;margin:.8cqw 0}
+#s4 .brow b{width:9.5cqw;font-size:1.7cqw;color:#fff}
+#s4 .barbox{flex:1;height:2cqw;background:#241640;overflow:hidden}
+#s4 .bar{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--gold));
+  animation:fill 2.2s steps(12) forwards}
+#s4 .brow:nth-child(2) .bar{animation-delay:2.2s}
+#s4 .brow:nth-child(3) .bar{animation-delay:3.4s}
+#s4 .brow:nth-child(4) .bar{animation-delay:4.6s}
+@keyframes fill{to{width:100%}}
+#s4 .brow em{font-style:normal;color:var(--gold);font-size:2cqw;width:3cqw;text-align:right}
+#s4 .douze{position:absolute;top:34%;right:6%;font-size:3.6cqw;color:var(--pink);
+  transform:rotate(-8deg);opacity:0;text-shadow:.25cqw .25cqw 0 var(--gold);
+  animation:stampin .5s steps(3) 9s forwards, chase 0.48s steps(2) 9.5s infinite}
+#s4 .joycap{left:50%;bottom:31%;transform:translateX(-50%) rotate(-1.2deg);font-size:2.6cqw;
+  padding:1cqw 2cqw;opacity:0;animation:stampin .5s steps(3) 12.5s forwards;z-index:5}
+@keyframes stampin{from{opacity:0;transform:translateX(-50%) scale(2.4) rotate(-6deg)}
+  to{opacity:1;transform:translateX(-50%) scale(1) rotate(-1.2deg)}}
+
+/* ===== BEAT 6 — THE COUNTRY LIGHTS UP ===== */
+#s5{background:linear-gradient(180deg,#131b3a,#2a0f4d)}
+#s5 svg{position:absolute;top:6%;left:50%;transform:translateX(-50%);height:74%}
+#s5 .aus{fill:#5b5647;stroke:#2b2620;stroke-width:.8}
+#s5 .glow{fill:url(#gr);clip-path:url(#ausclip)}
+#s5 .glow circle{animation:spread 5s steps(18) 1.2s forwards}
+@keyframes spread{from{r:0}to{r:110}}
+#s5 .cdot{fill:var(--gold);stroke:#fff;stroke-width:.7;opacity:0;transform-box:fill-box;
+  transform-origin:center;animation:dotpop .4s steps(3) forwards}
+@keyframes dotpop{from{opacity:0;transform:scale(.2)}to{opacity:1;transform:scale(1)}}
+#s5 .cbr{left:50%;top:71%;transform:translateX(4cqw) rotate(2deg);opacity:0;font-size:1.5cqw;
+  animation:pop .4s steps(3) 1.4s forwards}
+#s5 .crew{position:absolute;bottom:1%;left:0;width:100%;display:flex;justify-content:space-evenly}
+#s5 .crew .fig{position:relative;transform:scale(.85);filter:grayscale(1);animation:colourin .3s steps(2) forwards}
+@keyframes colourin{to{filter:grayscale(0)}}
+#s5 .keylab{left:50%;top:42%;transform:translateX(-50%) rotate(-2deg);font-size:3.4cqw;
+  background:var(--gold);opacity:0;animation:stampk .45s steps(3) 7s forwards;z-index:6}
+@keyframes stampk{from{opacity:0;transform:translateX(-50%) scale(3)}
+  to{opacity:1;transform:translateX(-50%) scale(1) rotate(-2deg)}}
+#stage.keyed{animation:jolt .5s steps(3)}
+#stage.keyed .sc{filter:saturate(1.18)}
+@keyframes jolt{40%{transform:scale(1.025) rotate(.4deg)}}
+
+/* ===== BEAT 7 — THE INFORMATIVE BEAT ===== */
+#s6{background:radial-gradient(circle at 50% 30%,#41176b,#160a28 75%)}
+#s6 .infocard{position:absolute;top:50%;left:50%;width:64cqw;padding:5cqw 4.5cqw 4.5cqw;
+  background:var(--paper);color:var(--ink);opacity:0;
+  transform:translate(-50%,-50%) rotate(-1deg)}
+#s6 .infocard .tab{position:absolute;top:-2.2cqw;left:3cqw;background:var(--ink);color:var(--paper);
+  font-family:var(--type);font-size:2cqw;padding:.5cqw 1.6cqw;letter-spacing:.18em}
+#s6 .infocard h2{font-size:4.6cqw;line-height:1.06;margin-bottom:1.4cqw}
+#s6 .infocard p{font-family:var(--type);font-size:2.2cqw;line-height:1.4}
+#s6 .infocard .hl{background:var(--gold);padding:0 .5cqw}
+#s6 .c0{animation:cardcycle 4.2s steps(3) .1s both}
+#s6 .c1{animation:cardcycle 4.2s steps(3) 4.3s both}
+#s6 .c2{animation:cardcycle 4.2s steps(3) 8.5s both}
+#s6 .c3{animation:cardin .45s steps(3) 12.7s both}
+@keyframes cardcycle{0%{opacity:0;transform:translate(-50%,-50%) scale(1.7) rotate(3deg)}
+  9%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-1deg)}
+  91%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-1deg)}
+  100%{opacity:0;transform:translate(-56%,-50%) rotate(-4deg)}}
+@keyframes cardin{from{opacity:0;transform:translate(-50%,-50%) scale(1.7) rotate(3deg)}
+  to{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(-1deg)}}
+
+/* ===== BEAT 8 — THE CLOSE ===== */
+#s7{background:radial-gradient(circle at 50% 24%,#55207e,#12061f 78%)}
+#s7 .plat2{position:absolute;bottom:0;left:10%;width:80%;height:18%;background:var(--pink);
+  box-shadow:0 -.6cqw 0 #c1005e}
+#s7 .spot2{position:absolute;top:0;left:50%;transform:translateX(-50%);width:46cqw;height:100%;
+  background:conic-gradient(from 172deg at 50% 0,transparent 0deg,rgba(255,240,180,.38) 16deg,transparent 32deg)}
+#s7 .hero{bottom:17%;left:12%;transform:scale(1.5);transform-origin:bottom;
+  animation:walkon 3s steps(12) .4s forwards}
+@keyframes walkon{to{left:44%}}
+#s7 .idea{position:absolute;top:-22%;left:34%;width:2.6cqw;height:2.6cqw;background:var(--pink);
+  transform:rotate(12deg);box-shadow:0 0 2cqw var(--pink)}
+#s7 .marq2{position:absolute;top:9%;left:50%;transform:translateX(-50%);display:flex;gap:.5cqw;
+  opacity:0;animation:pop .5s steps(3) 4.2s forwards}
+#s7 .marq2 .tile{width:4.6cqw;height:6.2cqw;background:var(--paper);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:3.4cqw;box-shadow:0 .4cqw 0 rgba(0,0,0,.35)}
+#s7 .yr{position:absolute;top:26%;left:50%;transform:translateX(-50%) rotate(-1.4deg);
+  font-family:var(--type);font-size:2.4cqw;color:var(--gold);letter-spacing:.5em;opacity:0;
+  animation:pop .4s steps(3) 4.8s forwards}
+#s7 .arm{position:absolute;top:-52%;right:14%;width:13cqw;height:56%;transform-origin:top;
+  animation:stampdown 1s steps(5) 6.2s forwards}
+@keyframes stampdown{0%{transform:translateY(-10cqw) rotate(8deg)}
+  60%{transform:translateY(21cqw) rotate(0)}80%{transform:translateY(18cqw)}100%{transform:translateY(19cqw)}}
+#s7 .arm .handle{position:absolute;top:0;left:38%;width:24%;height:62%;background:#7a4a1e}
+#s7 .arm .knob{position:absolute;top:-4cqw;left:22%;width:56%;height:5cqw;border-radius:50%;background:#5d3919}
+#s7 .arm .pad{position:absolute;bottom:0;left:0;width:100%;height:26%;background:var(--red);border-radius:.8cqw}
+#s7 .approved{position:absolute;top:47%;left:50%;font-size:6.4cqw;color:var(--red);
+  border:.7cqw solid var(--red);padding:.6cqw 2.2cqw;letter-spacing:.1em;opacity:0;
+  transform:translateX(-50%) rotate(-9deg);
+  animation:stampshow .3s steps(2) 7.1s forwards}
+@keyframes stampshow{from{opacity:0;transform:translateX(-50%) rotate(-9deg) scale(1.9)}
+  to{opacity:.92;transform:translateX(-50%) rotate(-9deg) scale(1)}}
+#s7 .tag{left:50%;bottom:8%;transform:translateX(-50%) rotate(-1deg);font-size:2.7cqw;padding:1cqw 2.4cqw;
+  opacity:0;animation:pop .5s steps(3) 8.6s forwards;z-index:6}
+
+/* ---------- gate / chrome / end ---------- */
+#gate{position:absolute;inset:0;z-index:40;background:
+  radial-gradient(circle at 50% 40%,#b9b3a2,#8a8578 80%);display:flex;align-items:center;justify-content:center}
+#gate .folder{position:relative;width:56cqw;padding:5cqw 4cqw 4cqw;background:#d9b56b;
+  transform:rotate(-1.2deg);box-shadow:0 1cqw 0 rgba(0,0,0,.3)}
+#gate .folder::before{content:"";position:absolute;top:-2.6cqw;left:0;width:34%;height:3cqw;
+  background:#d9b56b;border-radius:1cqw 1cqw 0 0}
+#gate h1{font-size:5.4cqw;color:var(--ink);line-height:1}
+#gate .frm{font-family:var(--type);font-size:1.9cqw;color:#5c4a22;margin:1.2cqw 0 2.4cqw}
+#gate button{font-family:var(--disp);font-size:2.8cqw;color:var(--red);background:none;
+  border:.55cqw solid var(--red);border-radius:50%;width:19cqw;height:19cqw;cursor:pointer;
+  transform:rotate(-11deg);letter-spacing:.06em;position:absolute;right:4cqw;bottom:-5cqw;
+  background:rgba(242,234,216,.9);transition:transform .12s}
+#gate button:hover{transform:rotate(-6deg) scale(1.05)}
+#gate button:focus-visible{outline:.5cqw dashed var(--ink);outline-offset:.5cqw}
+#gate .fine{position:absolute;bottom:1.4cqw;left:4cqw;font-family:var(--type);font-size:1.3cqw;color:#5c4a22}
+#chrome{position:absolute;left:0;bottom:0;width:100%;z-index:30;display:none;
+  align-items:center;gap:1.4cqw;padding:1cqw 1.6cqw}
+#chrome.on{display:flex}
+#tapebar{position:absolute;top:0;left:0;height:.7cqw;width:100%;background:rgba(0,0,0,.25)}
+#tapefill{height:100%;width:0;background:var(--red)}
+#dots{display:flex;gap:1cqw;margin:0 auto}
+.dot{width:1.7cqw;height:1.7cqw;border-radius:50%;background:rgba(0,0,0,.35);
+  border:.25cqw solid rgba(255,255,255,.5);cursor:pointer}
+.dot.here{background:var(--pink)}
+.ctl{font-family:var(--type);font-size:1.5cqw;background:rgba(242,234,216,.85);color:var(--ink);
+  border:none;padding:.5cqw 1.1cqw;cursor:pointer;box-shadow:0 .25cqw 0 rgba(0,0,0,.3)}
+#blackout{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none;z-index:35;
+  transition:opacity .8s steps(4)}
+#endcard{position:absolute;inset:0;z-index:36;display:none;background:#0b0710;color:var(--paper);
+  flex-direction:column;align-items:center;justify-content:center;gap:2cqw;text-align:center}
+#endcard.on{display:flex}
+#endcard h2{font-size:4cqw;letter-spacing:.06em}
+#endcard p{font-family:var(--type);font-size:1.8cqw;color:#b9a9d6}
+#endcard button{margin-top:1cqw}
+@media (prefers-reduced-motion:reduce){
+  .wob,#s0 .fluoro{animation:none}
+}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- ================= GATE ================= -->
+  <div id="gate">
+    <div class="folder cut">
+      <h1>BUREAUVISION</h1>
+      <div class="frm">FORM BV-2026 — APPLICATION TO EXPERIENCE JOY (IN TRIPLICATE)</div>
+      <div class="frm">Duration: 2 min &nbsp;|&nbsp; Colour: eventually &nbsp;|&nbsp; Sound: on, ideally</div>
+      <button id="play">PRESS<br>PLAY</button>
+      <div class="fine">Lodging this form constitutes consent to glitter.</div>
+    </div>
+  </div>
+
+  <!-- ================= BEAT 1 : THE GREY ================= -->
+  <section class="sc" id="s0">
+    <div class="fluoro"></div>
+    <div class="row r1">
+      <div class="desk"><div class="top"></div><div class="leg lgL"></div><div class="leg lgR"></div><div class="mon"></div><div class="fig wkr"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body"></div><div class="lan"></div><div class="badge"></div></div></div>
+      <div class="desk"><div class="top"></div><div class="leg lgL"></div><div class="leg lgR"></div><div class="mon"></div><div class="fig wkr"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body"></div><div class="lan"></div><div class="badge"></div></div></div>
+      <div class="desk"><div class="top"></div><div class="leg lgL"></div><div class="leg lgR"></div><div class="mon"></div><div class="fig wkr"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body"></div><div class="lan"></div><div class="badge"></div></div></div>
+      <div class="desk"><div class="top"></div><div class="leg lgL"></div><div class="leg lgR"></div><div class="mon"></div></div>
+    </div>
+    <div class="row r2">
+      <div class="desk"><div class="top"></div><div class="leg lgL"></div><div class="leg lgR"></div><div class="mon"></div></div>
+      <div class="desk"><div class="top"></div><div class="leg lgL"></div><div class="leg lgR"></div><div class="mon"></div><div class="fig wkr"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body"></div><div class="lan"></div><div class="badge"></div></div></div>
+      <div class="desk"><div class="top"></div><div class="leg lgL"></div><div class="leg lgR"></div><div class="mon"></div></div>
+      <div class="desk"><div class="top"></div><div class="leg lgL"></div><div class="leg lgR"></div><div class="mon"></div></div>
+    </div>
+    <div class="bigsheet cut"></div>
+    <div class="fig hero wob"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body"></div><div class="lan"></div><div class="badge"></div></div>
+    <div class="copier cut"><div class="lid"></div><div class="led"></div></div>
+    <div class="tape-label cap">MONDAY, 9:47 AM. SOMEWHERE IN THE APS.</div>
+  </section>
+
+  <!-- ================= BEAT 2 : THE SPARK ================= -->
+  <section class="sc" id="s1">
+    <div class="deskbig"></div>
+    <div class="sheet cut"></div>
+    <div class="postit cut"></div>
+    <div class="fig hero"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body"></div><div class="lan"></div><div class="badge"></div></div>
+    <div class="b2"></div><div class="b1"></div>
+    <div class="bubble cut">What if…?<small>[REDACTED PENDING COURAGE]</small></div>
+  </section>
+
+  <!-- ================= BEAT 3 : THE IDEA ASSEMBLES ================= -->
+  <section class="sc" id="s2">
+    <div class="wash"></div>
+    <div class="marquee">
+      <div class="tile" style="--i:0;--dx:-40cqw;--dy:-20cqw"><i></i><i></i><i></i><i></i>B</div>
+      <div class="tile" style="--i:1;--dx:30cqw;--dy:-28cqw"><i></i><i></i><i></i><i></i>U</div>
+      <div class="tile" style="--i:2;--dx:-22cqw;--dy:26cqw"><i></i><i></i><i></i><i></i>R</div>
+      <div class="tile" style="--i:3;--dx:44cqw;--dy:14cqw"><i></i><i></i><i></i><i></i>E</div>
+      <div class="tile" style="--i:4;--dx:-36cqw;--dy:8cqw"><i></i><i></i><i></i><i></i>A</div>
+      <div class="tile" style="--i:5;--dx:18cqw;--dy:-30cqw"><i></i><i></i><i></i><i></i>U</div>
+      <div class="tile" style="--i:6;--dx:-14cqw;--dy:-26cqw"><i></i><i></i><i></i><i></i>V</div>
+      <div class="tile" style="--i:7;--dx:38cqw;--dy:22cqw"><i></i><i></i><i></i><i></i>I</div>
+      <div class="tile" style="--i:8;--dx:-42cqw;--dy:-6cqw"><i></i><i></i><i></i><i></i>S</div>
+      <div class="tile" style="--i:9;--dx:26cqw;--dy:28cqw"><i></i><i></i><i></i><i></i>I</div>
+      <div class="tile" style="--i:10;--dx:-18cqw;--dy:18cqw"><i></i><i></i><i></i><i></i>O</div>
+      <div class="tile" style="--i:11;--dx:34cqw;--dy:-16cqw"><i></i><i></i><i></i><i></i>N</div>
+    </div>
+    <div class="sub">n. — a stage for every daft, brilliant idea in the service</div>
+  </section>
+
+  <!-- ================= BEAT 4 : BUILDING THE STAGE ================= -->
+  <section class="sc" id="s3">
+    <div class="plat p1 cut"></div><div class="plat p2 cut"></div><div class="plat p3 cut"></div>
+    <div class="stack stL">
+      <div class="cab cut"><div class="drawer"></div><div class="woof"></div></div>
+      <div class="cab cut"><div class="drawer"></div><div class="woof"></div></div>
+      <div class="cab cut"><div class="drawer"></div><div class="woof"></div></div>
+    </div>
+    <div class="stack stR">
+      <div class="cab cut"><div class="drawer"></div><div class="woof"></div></div>
+      <div class="cab cut"><div class="drawer"></div><div class="woof"></div></div>
+      <div class="cab cut"><div class="drawer"></div><div class="woof"></div></div>
+    </div>
+    <div class="ball"></div>
+    <div class="glint" style="left:22%;top:30%"></div>
+    <div class="glint" style="left:66%;top:22%;animation-delay:5.4s"></div>
+    <div class="glint" style="left:40%;top:48%;animation-delay:6.1s"></div>
+    <div class="glint" style="left:78%;top:44%;animation-delay:5.8s"></div>
+    <div class="lanwrap" id="lanwrap"></div>
+    <div class="tape-label cap">THE OFFICE WOULD LIKE A WORD. THE WORD IS "ENCORE."</div>
+  </section>
+
+  <!-- ================= BEAT 5 : THE CONTESTANTS ================= -->
+  <section class="sc" id="s4">
+    <div class="spot"></div>
+    <div class="runway cut"></div>
+    <div class="act a1">
+      <div class="cells">
+        <div class="cell cut">A1</div><div class="cell cut">B2</div><div class="cell cut">C3</div><div class="cell cut">D4</div><div class="cell cut">E5</div>
+      </div>
+      <div class="actname">ACT 1 — THE SPREADSHEET CHORUS LINE</div>
+    </div>
+    <div class="act a2">
+      <div class="hat"></div>
+      <div class="vest cut"><div class="bandh"></div><div class="bandv"></div></div>
+      <div class="omouth"></div>
+      <div class="note n1">♪</div><div class="note n2">♫</div><div class="note n3">♪</div>
+      <div class="actname">ACT 2 — HI-VIS OPERA (UNAMPLIFIED)</div>
+    </div>
+    <div class="act a3">
+      <div class="stool"></div>
+      <div class="stapler"><div class="base"></div><div class="arm2"></div></div>
+      <div class="actname">ACT 3 — THE STAPLER, A SOLO</div>
+    </div>
+    <div class="board cut">
+      <h3>JURY SCORES</h3>
+      <div class="brow"><b>JOY</b><div class="barbox"><div class="bar"></div></div><em>12</em></div>
+      <div class="brow"><b>COURAGE</b><div class="barbox"><div class="bar"></div></div><em>12</em></div>
+      <div class="brow"><b>DELIGHT</b><div class="barbox"><div class="bar"></div></div><em>12</em></div>
+    </div>
+    <div class="douze">DOUZE POINTS!</div>
+    <div class="tape-label joycap">JOY IS A LEGITIMATE METRIC.</div>
+  </section>
+
+  <!-- ================= BEAT 6 : THE COUNTRY LIGHTS UP ================= -->
+  <section class="sc" id="s5">
+    <svg viewBox="0 0 100 95">
+      <defs>
+        <radialGradient id="gr" cx="66%" cy="72%" r="80%">
+          <stop offset="0%" stop-color="#ff2e88"/>
+          <stop offset="45%" stop-color="#ff7ab5"/>
+          <stop offset="100%" stop-color="#ffd23f"/>
+        </radialGradient>
+        <clipPath id="ausclip">
+          <path d="M8,52 L12,30 L20,22 L28,26 L33,18 L40,22 L44,16 L48,28 L52,18 L56,6 L60,20 L70,30 L78,42 L80,52 L76,62 L68,70 L58,76 L48,74 L38,72 L28,66 L18,62 L10,56 Z M56,84 L62,82 L60,90 Z"/>
+        </clipPath>
+      </defs>
+      <path class="aus" d="M8,52 L12,30 L20,22 L28,26 L33,18 L40,22 L44,16 L48,28 L52,18 L56,6 L60,20 L70,30 L78,42 L80,52 L76,62 L68,70 L58,76 L48,74 L38,72 L28,66 L18,62 L10,56 Z"/>
+      <path class="aus" d="M56,84 L62,82 L60,90 Z"/>
+      <g class="glow"><circle cx="66" cy="69" r="0"/></g>
+      <circle class="cdot" cx="66" cy="69" r="1.6" style="animation-delay:1.2s"/>
+      <circle class="cdot" cx="69" cy="66" r="1.3" style="animation-delay:2.2s"/>
+      <circle class="cdot" cx="57" cy="75" r="1.3" style="animation-delay:2.7s"/>
+      <circle class="cdot" cx="77" cy="52" r="1.3" style="animation-delay:3.2s"/>
+      <circle class="cdot" cx="44" cy="68" r="1.3" style="animation-delay:3.7s"/>
+      <circle class="cdot" cx="59" cy="86" r="1.1" style="animation-delay:4.2s"/>
+      <circle class="cdot" cx="34" cy="19" r="1.3" style="animation-delay:4.7s"/>
+      <circle class="cdot" cx="10" cy="54" r="1.3" style="animation-delay:5.2s"/>
+    </svg>
+    <div class="tape-label cbr">IT STARTS IN CANBERRA. OBVIOUSLY.</div>
+    <div class="crew">
+      <div class="fig" style="animation-delay:2.4s"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body" style="--cardi:#00c2ff"></div><div class="lan"></div><div class="badge"></div></div>
+      <div class="fig grin" style="animation-delay:3.1s"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body" style="--cardi:#ffd23f"></div><div class="lan"></div><div class="badge"></div></div>
+      <div class="fig" style="animation-delay:3.8s"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body" style="--cardi:#ff2e88"></div><div class="lan"></div><div class="badge"></div></div>
+      <div class="fig grin" style="animation-delay:4.5s"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body" style="--cardi:#7b2ff2"></div><div class="lan"></div><div class="badge"></div></div>
+      <div class="fig grin" style="animation-delay:5.2s"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body" style="--cardi:#ff7a00"></div><div class="lan"></div><div class="badge"></div></div>
+    </div>
+    <div class="tape-label keylab">KEY CHANGE.</div>
+  </section>
+
+  <!-- ================= BEAT 7 : THE INFORMATIVE BEAT ================= -->
+  <section class="sc" id="s6">
+    <div class="infocard cut c0">
+      <div class="tab">WHAT.</div>
+      <h2>Bureauvision is your chance to shine.</h2>
+      <p>The APS creativity challenge. Bring the idea you doodle in the margins. Yes, that one.</p>
+    </div>
+    <div class="infocard cut c1">
+      <div class="tab">WHO.</div>
+      <h2>Australian public servants.</h2>
+      <p>All of them. Every level, every agency, every lanyard. Especially yours.</p>
+    </div>
+    <div class="infocard cut c2">
+      <div class="tab">WHEN.</div>
+      <h2>Entries due <span class="hl">9am Monday 20 July</span>.</h2>
+      <p>Which is soon. Gloriously, motivatingly soon.</p>
+    </div>
+    <div class="infocard cut c3">
+      <div class="tab">HOW.</div>
+      <h2>Details on the Digital Profession.</h2>
+      <p>One page. One idea. One stage. No triplicate required (this once).</p>
+    </div>
+  </section>
+
+  <!-- ================= BEAT 8 : THE CLOSE ================= -->
+  <section class="sc" id="s7">
+    <div class="spot2"></div>
+    <div class="plat2 cut"></div>
+    <div class="marq2">
+      <div class="tile">B</div><div class="tile">U</div><div class="tile">R</div><div class="tile">E</div><div class="tile">A</div><div class="tile">U</div><div class="tile">V</div><div class="tile">I</div><div class="tile">S</div><div class="tile">I</div><div class="tile">O</div><div class="tile">N</div>
+    </div>
+    <div class="yr">2 0 2 6</div>
+    <div class="fig hero grin" style="--cardi:#ffb703"><div class="head"><div class="eye eL"></div><div class="eye eR"></div><div class="mouth"></div></div><div class="body"></div><div class="lan"></div><div class="badge"></div><div class="idea"></div></div>
+    <div class="arm"><div class="knob"></div><div class="handle"></div><div class="pad"></div></div>
+    <div class="approved">APPROVED</div>
+    <div class="lanwrap" id="lanwrap2"></div>
+    <div class="tape-label tag">YOUR IDEA DESERVES A STAGE.</div>
+  </section>
+
+  <!-- ================= CHROME ================= -->
+  <div id="tapebar"><div id="tapefill"></div></div>
+  <div id="chrome">
+    <button class="ctl" id="restart">↺ FROM THE TOP</button>
+    <div id="dots"></div>
+    <button class="ctl" id="mute">MUTE (OPEN-PLAN MODE)</button>
+  </div>
+  <div id="blackout"></div>
+  <div id="endcard">
+    <h2>BUREAUVISION 2026</h2>
+    <p>Generated from a one-page brief. Obviously.</p>
+    <p>Made from 100% recycled office supplies. No forms were harmed.</p>
+    <button class="ctl" id="replay">↺ WATCH IT AGAIN</button>
+  </div>
+</div>
+<script>
+/* ============ timeline ============ */
+const DUR=[9,11,17,20,18,14,17,14];
+const STARTS=DUR.reduce((a,d,i)=>(a.push(i?a[i-1]+DUR[i-1]:0),a),[]);
+const TOTAL=120, KEY_T=82, BPM=126, SPB=60/BPM, BAR=SPB*4;
+const NAMES=["The Grey","The Spark","The Idea","The Stage","The Contestants","The Country","The Details","The Close"];
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const stage=$("#stage"), scenes=$$(".sc"), tape=$("#tapefill");
+let t0=0,cur=-1,keyed=false,ended=false,raf=null,started=false;
+
+/* dots */
+const dotsBox=$("#dots");
+NAMES.forEach((n,i)=>{const d=document.createElement("button");d.className="dot";d.title=`Beat ${i+1} — ${n}`;
+  d.onclick=()=>jump(i);dotsBox.appendChild(d);});
+const dots=$$(".dot");
+
+const clock=()=>performance.now()/1000-t0;
+const sceneAt=e=>{for(let i=DUR.length-1;i>=0;i--)if(e>=STARTS[i])return i;return 0};
+
+function confetti(box,n,spreadS){
+  const cols=["#ff2e88","#00c2ff","#ffd23f","#ffffff","#7b2ff2","#ff7a00"];
+  for(let i=0;i<n;i++){const s=document.createElement("div");s.className="strip";
+    s.style.left=(Math.random()*100)+"%";
+    s.style.background=cols[i%cols.length];
+    s.style.setProperty("--rr",(Math.random()*720-360)+"deg");
+    s.style.animationDuration=(2.4+Math.random()*2.2)+"s";
+    s.style.animationDelay=(Math.random()*spreadS)+"s";
+    box.appendChild(s);}
+}
+
+function activate(i){
+  cur=i;scenes.forEach((sc,k)=>sc.classList.toggle("active",k===i));
+  dots.forEach((d,k)=>d.classList.toggle("here",k===i));
+  if(i===2)setTimeout(()=>$$("#s2 .tile").forEach(t=>t.classList.add("on")),11200);
+  if(i===3){const b=$("#lanwrap");b.innerHTML="";confetti(b,26,13);}
+  if(i===7){const b=$("#lanwrap2");b.innerHTML="";confetti(b,40,6);}
+  A.onScene(i);
+}
+
+function tick(){
+  const e=clock();
+  tape.style.width=Math.min(e/TOTAL*100,100)+"%";
+  if(e>=KEY_T&&!keyed){keyed=true;stage.classList.add("keyed");}
+  const s=sceneAt(Math.min(e,TOTAL-0.01));
+  if(s!==cur)activate(s);
+  $("#blackout").style.opacity=e>=118.2?1:0;
+  if(e>=119.2&&!ended){ended=true;$("#endcard").classList.add("on");A.stopGroove();return;}
+  raf=requestAnimationFrame(tick);
+}
+
+function jump(i){
+  t0=performance.now()/1000-STARTS[i];
+  ended=false;$("#endcard").classList.remove("on");$("#blackout").style.opacity=0;
+  keyed=STARTS[i]>=KEY_T;stage.classList.toggle("keyed",keyed);
+  cur=-1;activate(i);A.resync();
+  cancelAnimationFrame(raf);raf=requestAnimationFrame(tick);
+}
+
+/* ============ audio ============ */
+const A=(()=>{
+  let ac,master,comp,humG,muted=false,schedTimer=null,nextBar=0,grooveOn=true;
+  const mf=(m,t)=>440*Math.pow(2,((m+(t-t0>=KEY_T?2:0))-69)/12);
+  let noiseBuf;
+  function init(){
+    ac=new (window.AudioContext||window.webkitAudioContext)();
+    comp=ac.createDynamicsCompressor();comp.connect(ac.destination);
+    master=ac.createGain();master.gain.value=.9;master.connect(comp);
+    noiseBuf=ac.createBuffer(1,ac.sampleRate*2,ac.sampleRate);
+    const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+    /* office hum */
+    const src=ac.createBufferSource();src.buffer=noiseBuf;src.loop=true;
+    const lp=ac.createBiquadFilter();lp.type="lowpass";lp.frequency.value=140;
+    humG=ac.createGain();humG.gain.value=.06;
+    src.connect(lp).connect(humG).connect(master);src.start();
+    const hum=ac.createOscillator();hum.frequency.value=50;
+    const hg=ac.createGain();hg.gain.value=.015;hum.connect(hg).connect(humG);hum.start();
+  }
+  const noise=(t,d,type,f,q,g)=>{const s=ac.createBufferSource();s.buffer=noiseBuf;
+    const flt=ac.createBiquadFilter();flt.type=type;flt.frequency.value=f;flt.Q.value=q||1;
+    const gn=ac.createGain();gn.gain.setValueAtTime(g,t);gn.gain.exponentialRampToValueAtTime(.001,t+d);
+    s.connect(flt).connect(gn).connect(master);s.start(t);s.stop(t+d+.05);return{flt,gn}};
+  const tone=(f,t,d,type,g,att)=>{const o=ac.createOscillator();o.type=type||"sine";o.frequency.value=f;
+    const gn=ac.createGain();gn.gain.setValueAtTime(0,t);gn.gain.linearRampToValueAtTime(g,t+(att||.015));
+    gn.gain.exponentialRampToValueAtTime(.001,t+d);
+    o.connect(gn).connect(master);o.start(t);o.stop(t+d+.05)};
+  const kick=t=>{const o=ac.createOscillator();o.frequency.setValueAtTime(150,t);
+    o.frequency.exponentialRampToValueAtTime(46,t+.12);
+    const g=ac.createGain();g.gain.setValueAtTime(.9,t);g.gain.exponentialRampToValueAtTime(.001,t+.24);
+    o.connect(g).connect(master);o.start(t);o.stop(t+.3)};
+  const hat=(t,open)=>noise(t,open?.22:.05,"highpass",6500,1,.18);
+  const clap=t=>{noise(t,.12,"bandpass",1900,1.4,.5);noise(t+.02,.1,"bandpass",1700,1.4,.3)};
+  const bassN=(m,t,d)=>{const o=ac.createOscillator();o.type="sawtooth";o.frequency.value=mf(m,t);
+    const f=ac.createBiquadFilter();f.type="lowpass";f.frequency.value=520;
+    const g=ac.createGain();g.gain.setValueAtTime(.28,t);g.gain.exponentialRampToValueAtTime(.02,t+d);
+    o.connect(f).connect(g).connect(master);o.start(t);o.stop(t+d)};
+  const pad=(ms,t,d,g)=>ms.forEach(m=>{[0,7].forEach(det=>{
+    const o=ac.createOscillator();o.type="sawtooth";o.frequency.value=mf(m,t)*(1+det/1200);
+    const f=ac.createBiquadFilter();f.type="lowpass";f.frequency.value=1300;
+    const gn=ac.createGain();gn.gain.setValueAtTime(0,t);gn.gain.linearRampToValueAtTime(g||.045,t+.3);
+    gn.gain.setValueAtTime(g||.045,t+d-.25);gn.gain.linearRampToValueAtTime(0,t+d);
+    o.connect(f).connect(gn).connect(master);o.start(t);o.stop(t+d)})});
+  const lead=(m,t,d,g)=>{tone(mf(m,t),t,d,"square",g||.11);tone(mf(m,t)*1.003,t,d,"sawtooth",(g||.11)*.5)};
+  const chime=t=>{tone(1568,t,1.4,"triangle",.16);tone(2093,t+.05,1.2,"triangle",.08)};
+  const clunk=t=>{tone(88,t,.1,"sine",.5);noise(t,.07,"lowpass",420,1,.4)};
+  const stampT=t=>{tone(70,t,.16,"sine",.7);noise(t,.12,"lowpass",600,1,.55);clap(t+.01)};
+  const riser=(t,d)=>{const s=ac.createBufferSource();s.buffer=noiseBuf;s.loop=true;
+    const f=ac.createBiquadFilter();f.type="bandpass";f.Q.value=2;
+    f.frequency.setValueAtTime(300,t);f.frequency.exponentialRampToValueAtTime(4200,t+d);
+    const g=ac.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.32,t+d-.05);
+    g.gain.linearRampToValueAtTime(0,t+d+.05);
+    s.connect(f).connect(g).connect(master);s.start(t);s.stop(t+d+.1)};
+  const crowd=(t,d,p)=>{const s=ac.createBufferSource();s.buffer=noiseBuf;s.loop=true;
+    const f=ac.createBiquadFilter();f.type="bandpass";f.frequency.value=1100;f.Q.value=.4;
+    const g=ac.createGain();g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(p,t+d*.3);
+    g.gain.linearRampToValueAtTime(0,t+d);
+    s.connect(f).connect(g).connect(master);s.start(t);s.stop(t+d+.1)};
+
+  /* chords in C (midi): bass roots + pad triads + anthem hook */
+  const ROOTS=[36,43,45,41];
+  const TRIADS=[[60,64,67],[59,62,67],[57,60,64],[57,60,65]];
+  const HOOK=[76,76,74,72,74,76,79,76];
+
+  function scheduleBar(bt,barN){
+    const rel=bt-t0;if(rel>115.8||rel<-.1)return;
+    const sc=sceneAt(Math.min(Math.max(rel,0),TOTAL-0.01));
+    const c=barN%4;
+    if(sc===0){if(barN%2===0)tone(mf(57,bt),bt,1.6,"sine",.1,.06);return;}
+    if(sc===1){tone(mf(57,bt),bt,1.6,"sine",.1,.05);tone(mf(60,bt),bt,1.6,"sine",.08,.05);
+      if(barN%2)tone(mf(64,bt),bt+2*SPB,.8,"triangle",.06);return;}
+    if(sc===2){const g=Math.min(.05+((rel-STARTS[2])/17)*.09,.14);
+      const seq=[57,60,64,67,69,72,76,79];
+      seq.forEach((m,i)=>tone(mf(m,bt),bt+i*SPB/2,.22,"triangle",g));return;}
+    /* groove scenes 3-7 */
+    const thin=sc===6;
+    for(let b=0;b<4;b++){const t=bt+b*SPB;
+      if(!thin||b%2===0)kick(t);
+      if(b===1||b===3)clap(t);
+      if(!thin){hat(t,false);hat(t+SPB/2,b===3);}else hat(t,false);
+    }
+    const root=ROOTS[c],tri=TRIADS[c];
+    if(thin){bassN(root,bt,BAR*0.95);}
+    else for(let e=0;e<8;e++)bassN(root+(e===6?12:0),bt+e*SPB/2,SPB/2*.9);
+    pad(tri,bt,BAR,thin?.03:.05);
+    const leadOn=(sc===3&&(rel-STARTS[3])>3.8)||sc===4||sc===5||sc===7;
+    if(leadOn)HOOK.forEach((m,i)=>lead(m,bt+i*SPB/2,SPB/2*.95,sc>=5?.13:.1));
+    if(sc>=5&&!thin)HOOK.forEach((m,i)=>{if(i%2===0)lead(m+12,bt+i*SPB/2,SPB/2*.9,.05)});
+  }
+
+  let barN=0;
+  function startSched(){nextBar=ac.currentTime+.1;barN=0;
+    schedTimer=setInterval(()=>{if(!grooveOn)return;
+      while(nextBar<ac.currentTime+.4){scheduleBar(nextBar,barN);barN++;nextBar+=BAR;}},30);}
+
+  function onScene(i){
+    if(!ac)return;
+    /* one-shots anchor to "now" — we schedule them the moment the scene activates */
+    const s=ac.currentTime;
+    humG.gain.setTargetAtTime(i<2?.06:0,s,.4);
+    if(i===1)chime(s+.2);
+    if(i===2){for(let k=0;k<12;k++)clunk(s+.5+k*.85+.7);riser(s+14.6,2.2);}
+    if(i===3)crowd(s+.05,3,.22);
+    if(i===4){crowd(s,4,.3);crowd(s+9,2.2,.38);
+      [79,83,86,91].forEach((m,k)=>lead(m,s+9+k*.09,.3,.12));}
+    if(i===5){riser(s+5.2,1.7);for(let k=0;k<8;k++)clap(s+5.6+k*.17);}
+    if(i===6)[0.4,4.6,8.8,13.0].forEach(o=>stampT(s+o));
+    if(i===7){crowd(s,5,.3);stampT(s+6.8);
+      finalAt(s+(116.6-clock()));}
+  }
+  function finalAt(t){if(t<ac.currentTime)return;
+    pad([62,66,69,74],t,3.2,.09);lead(86,t,2.6,.14);lead(74,t,2.6,.1);
+    kick(t);clap(t);crowd(t,3.4,.5);
+    tone(mf(38,t),t,2.8,"sawtooth",.2,.02);}
+  function resync(){if(!ac)return;grooveOn=true;nextBar=ac.currentTime+.08;
+    humG.gain.setTargetAtTime(cur<2?.06:0,ac.currentTime,.2);}
+  function stopGroove(){grooveOn=false;}
+  function begin(){init();grooveOn=true;startSched();}
+  function toggleMute(){muted=!muted;master.gain.value=muted?0:.9;return muted;}
+  return{begin,onScene,resync,stopGroove,toggleMute};
+})();
+
+/* ============ controls ============ */
+$("#play").onclick=()=>{
+  if(started)return;started=true;
+  A.begin();
+  $("#gate").style.display="none";$("#chrome").classList.add("on");
+  t0=performance.now()/1000;activate(0);raf=requestAnimationFrame(tick);
+};
+$("#restart").onclick=()=>jump(0);
+$("#replay").onclick=()=>jump(0);
+$("#mute").onclick=e=>{e.target.textContent=A.toggleMute()?"SOUND ON (BE BRAVE)":"MUTE (OPEN-PLAN MODE)";};
+document.addEventListener("keydown",e=>{
+  if(!started)return;
+  if(e.key==="ArrowRight")jump(Math.min(cur+1,7));
+  if(e.key==="ArrowLeft")jump(Math.max(cur-1,0));
+});
+</script>
+</body>
+</html>
